@@ -1,7 +1,7 @@
 {
     "your_username" : "yourinstagramusername",
+    "your_password" : "password123",
     "meme_pages" : ["memepageusername1","memepageusername2"],
     "toupload_folder" : "meme_notposted",
-    "uploaded_folder" : "meme_posted",
-    "your_password" : "password123"
+    "uploaded_folder" : "meme_posted"
 }

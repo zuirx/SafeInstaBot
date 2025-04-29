@@ -15,7 +15,9 @@ def get_random_line_and_remove(file_path):
     return chosen_line
 
 def seguir(playwright):
-    user_data_dir = "C:\\Users\\zz\\AppData\\Local\\Google\\Chrome\\User Data"
+
+    pathlocal = os.getenv('LOCALAPPDATA')
+    user_data_dir = os.path.join(pathlocal,"Google\\Chrome\\User Data")
     browser = playwright.chromium.launch_persistent_context(
         user_data_dir,
         headless=False,

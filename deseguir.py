@@ -2,11 +2,11 @@ from playwright.sync_api import sync_playwright
 import os, json
 
 path_project = os.path.dirname(__file__)
-path_project = os.path.dirname(__file__)
 with open(os.path.join(path_project,'config.json'), 'r') as cc: config_json = json.load(cc)
 
 def deseguir(playwright):
-    user_data_dir = "C:\\Users\\zz\\AppData\\Local\\Google\\Chrome\\User Data"
+    pathlocal = os.getenv('LOCALAPPDATA')
+    user_data_dir = os.path.join(pathlocal,"Google\\Chrome\\User Data")
     browser = playwright.chromium.launch_persistent_context(
         user_data_dir,
         headless=False,
@@ -15,7 +15,7 @@ def deseguir(playwright):
 
     page = browser.new_page()
     page.set_default_timeout(5000)
-    page.goto(f"https://www.instagram.com/{config_json['username']}/")
+    page.goto(f"https://www.instagram.com/{config_json['your_username']}/")
     
     for r in range(0,5):
         page.get_by_role("link", name="seguindo").click()

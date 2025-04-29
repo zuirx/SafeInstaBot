@@ -2,3 +2,4 @@ postar/
 postado/
 **pycache**
 config.json
+venv
