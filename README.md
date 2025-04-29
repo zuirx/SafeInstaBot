@@ -1,4 +1,4 @@
-# (Safe) Instragram Bot [BR]
+# (Safe) Instagram Bot [BR]
 
 ## Funções
 - postar.py - postar conteúdo de uma pasta (OK)
@@ -10,4 +10,4 @@ O objetivo é usar esse robô (junto com uma plataforma de automação, como n8n
 É usado o perfil do Google Chrome padrão, então é necessário logar/trocar de conta no navegador.
 Renomeie config_template.json para config.json após configurar o mesmo.
 
-(Ainda em desenvolvimento)
+(Ainda em desenvolvimento - funcionamento para linguagem PT-BR)
