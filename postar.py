@@ -30,12 +30,11 @@ else:
 # input()
 
 def postar(playwright):
-    pathlocal = os.getenv('LOCALAPPDATA')
-    user_data_dir = os.path.join(pathlocal,"Google\\Chrome\\User Data")
+    
+    browserprof = os.path.join(path_project, 'browser_profile')
     browser = playwright.chromium.launch_persistent_context(
-        user_data_dir,
+        user_data_dir=browserprof,
         headless=False,
-        executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     )
 
     page = browser.new_page()
@@ -44,13 +43,12 @@ def postar(playwright):
 
     page.get_by_role("link", name="Nova publicação Criar").click()
     pa.sleep(2)
-    page.get_by_role("button", name="Selecionar do computador").click()
 
-    wait_for_img(os.path.join(path_project, 'data/EXPLORER_nome.png'),tempo=20,clicar=True,dx=50,dy=0)
-    pa.write(nome_arq)
-    pa.press('enter')
+    with page.expect_file_chooser() as fc_info: page.get_by_role("button", name="Selecionar do computador").click()
+    file_chooser = fc_info.value
+    file_chooser.set_files([f"{nome_arq}"])
 
-    pa.sleep(0.2)
+    pa.sleep(1)
     page.locator("button").filter(has_text="Selecionar corte").click()
     # input("Selecionar corte")
     pa.sleep(0.2)

@@ -1,4 +1,4 @@
-import pyautogui as pa
+import pyautogui as pa, random
 
 def wait_for_img(img, tempo=60, clicar=False, dx=0, dy=0, passit=False):
     print('\n- finding image:\n',img)
@@ -18,3 +18,11 @@ def wait_for_img(img, tempo=60, clicar=False, dx=0, dy=0, passit=False):
         pa.sleep(2)
         if (tempo == 0): raise ValueError('! not found !')
         return False
+    
+def get_random_line_and_remove(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file: lines = file.readlines()
+    if not lines: return None
+    chosen_line = random.choice(lines).strip()
+    lines.remove(chosen_line + '\n')
+    with open(file_path, 'w', encoding='utf-8') as file: file.writelines(lines)
+    return chosen_line

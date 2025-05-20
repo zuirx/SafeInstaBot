@@ -1,29 +1,19 @@
 from playwright.sync_api import sync_playwright
-import time, os, random
+import time, os, random, auxi as au
 
 path_project = os.path.dirname(__file__)
 
-def get_random_line_and_remove(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file: lines = file.readlines()
-    if not lines: return None
-    chosen_line = random.choice(lines).strip()
-    lines.remove(chosen_line + '\n')
-    with open(file_path, 'w', encoding='utf-8') as file: file.writelines(lines)
-    return chosen_line
-
 def seguir(playwright):
 
-    pathlocal = os.getenv('LOCALAPPDATA')
-    user_data_dir = os.path.join(pathlocal,"Google\\Chrome\\User Data")
+    browserprof = os.path.join(path_project, 'browser_profile')
     browser = playwright.chromium.launch_persistent_context(
-        user_data_dir,
+        user_data_dir=browserprof,
         headless=False,
-        executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     )
 
     page = browser.new_page()
 
-    meme_page = get_random_line_and_remove(os.path.join(path_project,'data/meme_pgs.txt'))
+    meme_page = au.get_random_line_and_remove(os.path.join(path_project,'data/meme_pgs.txt'))
 
     url = 'https://instagram.com/'
     url += meme_page
